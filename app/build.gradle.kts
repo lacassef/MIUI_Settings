@@ -19,7 +19,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "REMOTE_CATALOG_URL", "\"\"")
+        buildConfigField(
+            "String",
+            "REMOTE_CATALOG_URL",
+            "\"https://cdn.jsdelivr.net/gh/lacassef/MIUI_Settings/catalog/catalog.json\""
+        )
         buildConfigField("Boolean", "REMOTE_CATALOG_SIGNATURE_REQUIRED", "false")
         buildConfigField("String", "REMOTE_CATALOG_SIGNATURE_SALT", "\"\"")
     }
