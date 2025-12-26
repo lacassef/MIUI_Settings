@@ -1,0 +1,441 @@
+{
+  "version": "2025.12.25",
+  "settings": [
+    {
+      "id": "notification_log",
+      "title": "Log de notificacoes",
+      "category": "Sistema",
+      "searchKeywords": [
+        "notificacoes",
+        "log",
+        "historico",
+        "notification",
+        "notification log",
+        "registro"
+      ],
+      "targets": [
+        {
+          "id": "notification_log_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$NotificationStationActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP (pode variar por ROM)"
+        }
+      ]
+    },
+    {
+      "id": "autostart_management",
+      "title": "Gerenciamento de Autostart",
+      "category": "Seguranca",
+      "searchKeywords": [
+        "autostart",
+        "inicio",
+        "automatico",
+        "startup",
+        "auto start",
+        "iniciar automaticamente",
+        "boot",
+        "permissoes"
+      ],
+      "targets": [
+        {
+          "id": "autostart_miui_permcenter",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.permcenter.autostart.AutoStartManagementActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI/HyperOS (SecurityCenter)"
+        }
+      ]
+    },
+    {
+      "id": "private_dns",
+      "title": "DNS privado",
+      "category": "Rede",
+      "minSdkVersion": 28,
+      "searchKeywords": [
+        "dns",
+        "dns privado",
+        "private dns",
+        "doh",
+        "adblock",
+        "internet",
+        "rede"
+      ],
+      "targets": [
+        {
+          "id": "private_dns_action",
+          "action": "android.settings.PRIVATE_DNS_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Android 9+ (AOSP)."
+        },
+        {
+          "id": "private_dns_fallback_wireless",
+          "action": "android.settings.WIRELESS_SETTINGS",
+          "priority": 10,
+          "requiresExported": false,
+          "notes": "Fallback (abre configuracoes de rede)."
+        }
+      ]
+    },
+    {
+      "id": "battery_optimization",
+      "title": "Otimizacao de bateria (Doze)",
+      "category": "Bateria",
+      "minSdkVersion": 23,
+      "searchKeywords": [
+        "bateria",
+        "otimizacao",
+        "doze",
+        "economia",
+        "whitelist",
+        "excecoes",
+        "alto consumo"
+      ],
+      "targets": [
+        {
+          "id": "battery_optimization_high_power_apps",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$HighPowerApplicationsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Lista de apps com alto consumo / excecoes de otimizacao."
+        },
+        {
+          "id": "battery_optimization_action",
+          "action": "android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS",
+          "priority": 90,
+          "requiresExported": false,
+          "notes": "Intent generica (Android)."
+        }
+      ]
+    },
+    {
+      "id": "trusted_credentials",
+      "title": "Certificados confiaveis",
+      "category": "Seguranca",
+      "searchKeywords": [
+        "certificados",
+        "credenciais",
+        "seguranca",
+        "ca",
+        "cert",
+        "trusted credentials"
+      ],
+      "targets": [
+        {
+          "id": "trusted_credentials_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$TrustedCredentialsSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP/MIUI."
+        }
+      ]
+    },
+    {
+      "id": "unknown_app_sources",
+      "title": "Instalar apps desconhecidos (por app)",
+      "category": "Seguranca",
+      "minSdkVersion": 26,
+      "searchKeywords": [
+        "apps desconhecidos",
+        "fontes desconhecidas",
+        "install unknown apps",
+        "sideload",
+        "apk"
+      ],
+      "targets": [
+        {
+          "id": "unknown_app_sources_action",
+          "action": "android.settings.MANAGE_UNKNOWN_APP_SOURCES",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Android 8+."
+        }
+      ]
+    },
+    {
+      "id": "overlay_permission",
+      "title": "Exibir sobre outros apps (overlay)",
+      "category": "Seguranca",
+      "minSdkVersion": 23,
+      "searchKeywords": [
+        "overlay",
+        "sobreposicao",
+        "exibir sobre outros apps",
+        "draw over other apps",
+        "bolha",
+        "janela flutuante"
+      ],
+      "targets": [
+        {
+          "id": "overlay_permission_action",
+          "action": "android.settings.action.MANAGE_OVERLAY_PERMISSION",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Permissao de sobreposicao."
+        }
+      ]
+    },
+    {
+      "id": "write_settings_permission",
+      "title": "Modificar configuracoes do sistema",
+      "category": "Seguranca",
+      "minSdkVersion": 23,
+      "searchKeywords": [
+        "write settings",
+        "modificar sistema",
+        "configuracoes do sistema",
+        "alterar configuracoes"
+      ],
+      "targets": [
+        {
+          "id": "write_settings_permission_action",
+          "action": "android.settings.action.MANAGE_WRITE_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Permissao WRITE_SETTINGS."
+        }
+      ]
+    },
+    {
+      "id": "notification_listener_access",
+      "title": "Acesso a notificacoes (Notification Listener)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "acesso a notificacoes",
+        "notification access",
+        "notification listener",
+        "listener",
+        "notificacao"
+      ],
+      "targets": [
+        {
+          "id": "notification_listener_access_action",
+          "action": "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Tela de acesso a notificacoes."
+        }
+      ]
+    },
+    {
+      "id": "dnd_access",
+      "title": "Acesso ao Nao Perturbe (DND)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "nao perturbe",
+        "dnd",
+        "do not disturb",
+        "acesso",
+        "politica de notificacao"
+      ],
+      "targets": [
+        {
+          "id": "dnd_access_action",
+          "action": "android.settings.NOTIFICATION_POLICY_ACCESS_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Acesso a configuracao do Nao Perturbe."
+        }
+      ]
+    },
+    {
+      "id": "nfc_settings",
+      "title": "NFC",
+      "category": "Rede",
+      "searchKeywords": [
+        "nfc",
+        "pagamento",
+        "tap",
+        "android beam"
+      ],
+      "targets": [
+        {
+          "id": "nfc_settings_action",
+          "action": "android.settings.NFC_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. do NFC (se existir no dispositivo)."
+        }
+      ]
+    },
+    {
+      "id": "wifi_settings",
+      "title": "Wi-Fi",
+      "category": "Rede",
+      "searchKeywords": [
+        "wifi",
+        "wi-fi",
+        "rede sem fio",
+        "internet"
+      ],
+      "targets": [
+        {
+          "id": "wifi_settings_action",
+          "action": "android.settings.WIFI_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. do Wi-Fi."
+        }
+      ]
+    },
+    {
+      "id": "bluetooth_settings",
+      "title": "Bluetooth",
+      "category": "Rede",
+      "searchKeywords": [
+        "bluetooth",
+        "bt",
+        "parear",
+        "conectar",
+        "dispositivo"
+      ],
+      "targets": [
+        {
+          "id": "bluetooth_settings_action",
+          "action": "android.settings.BLUETOOTH_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. do Bluetooth."
+        }
+      ]
+    },
+    {
+      "id": "display_settings",
+      "title": "Tela (Display)",
+      "category": "Tela",
+      "searchKeywords": [
+        "tela",
+        "display",
+        "brilho",
+        "resolucao",
+        "taxa de atualizacao"
+      ],
+      "targets": [
+        {
+          "id": "display_settings_action",
+          "action": "android.settings.DISPLAY_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. de tela."
+        }
+      ]
+    },
+    {
+      "id": "night_display",
+      "title": "Modo noturno / Filtro de luz azul",
+      "category": "Tela",
+      "minSdkVersion": 26,
+      "searchKeywords": [
+        "modo noturno",
+        "luz azul",
+        "night light",
+        "night display",
+        "filtro"
+      ],
+      "targets": [
+        {
+          "id": "night_display_action",
+          "action": "android.settings.NIGHT_DISPLAY_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Night Display (Android 8+)."
+        }
+      ]
+    },
+    {
+      "id": "application_settings",
+      "title": "Aplicativos (lista)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "aplicativos",
+        "apps",
+        "gerenciar apps",
+        "lista de apps",
+        "aplicacoes"
+      ],
+      "targets": [
+        {
+          "id": "application_settings_action",
+          "action": "android.settings.APPLICATION_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Lista/config. gerais de aplicativos."
+        },
+        {
+          "id": "manage_apps_fallback",
+          "action": "android.settings.MANAGE_APPLICATIONS_SETTINGS",
+          "priority": 50,
+          "requiresExported": false,
+          "notes": "Fallback alternativo."
+        }
+      ]
+    },
+    {
+      "id": "developer_options",
+      "title": "Opcoes do desenvolvedor",
+      "category": "Desenvolvedor",
+      "searchKeywords": [
+        "desenvolvedor",
+        "developer options",
+        "debug",
+        "adb",
+        "opcoes do desenvolvedor"
+      ],
+      "targets": [
+        {
+          "id": "developer_options_action",
+          "action": "android.settings.APPLICATION_DEVELOPMENT_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Abre Opcoes do desenvolvedor (se habilitadas)."
+        }
+      ]
+    },
+    {
+      "id": "sound_settings",
+      "title": "Som",
+      "category": "Sistema",
+      "searchKeywords": [
+        "som",
+        "volume",
+        "toque",
+        "audio"
+      ],
+      "targets": [
+        {
+          "id": "sound_settings_action",
+          "action": "android.settings.SOUND_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. de som e volume."
+        }
+      ]
+    },
+    {
+      "id": "date_settings",
+      "title": "Data e hora",
+      "category": "Sistema",
+      "searchKeywords": [
+        "data",
+        "hora",
+        "fuso",
+        "automatico",
+        "timezone"
+      ],
+      "targets": [
+        {
+          "id": "date_settings_action",
+          "action": "android.settings.DATE_SETTINGS",
+          "priority": 100,
+          "requiresExported": false,
+          "notes": "Config. de data e hora."
+        }
+      ]
+    }
+  ]
+}
