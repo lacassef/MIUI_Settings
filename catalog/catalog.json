@@ -436,6 +436,442 @@
           "notes": "Config. de data e hora."
         }
       ]
+    },
+    {
+      "id": "permissions_editor",
+      "title": "Editor de permissoes por app (MIUI)",
+      "category": "Seguranca",
+      "searchKeywords": [
+        "permissoes",
+        "permissions",
+        "editor",
+        "app perm",
+        "popup",
+        "background",
+        "autostart",
+        "miui",
+        "hyperos"
+      ],
+      "targets": [
+        {
+          "id": "permissions_editor_miui",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.permcenter.permissions.PermissionsEditorActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Requer extra_pkgname; pode abrir em branco sem pacote."
+        }
+      ]
+    },
+    {
+      "id": "virus_scan",
+      "title": "Antivirus (MIUI)",
+      "category": "Seguranca",
+      "searchKeywords": [
+        "antivirus",
+        "virus",
+        "scan",
+        "seguranca",
+        "security center"
+      ],
+      "targets": [
+        {
+          "id": "virus_scan_miui",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.securitycenter.virus.VirusScanActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Security Center."
+        }
+      ]
+    },
+    {
+      "id": "power_settings_miui",
+      "title": "Perfis de energia (MIUI)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "energia",
+        "power center",
+        "power settings",
+        "bateria",
+        "perfil",
+        "economia",
+        "performance"
+      ],
+      "targets": [
+        {
+          "id": "power_settings_miui",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.powercenter.PowerSettings",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI/HyperOS Power Center."
+        }
+      ]
+    },
+    {
+      "id": "power_mode",
+      "title": "Modo de desempenho",
+      "category": "Bateria",
+      "searchKeywords": [
+        "modo desempenho",
+        "performance mode",
+        "power mode",
+        "energia",
+        "balanced"
+      ],
+      "targets": [
+        {
+          "id": "power_mode_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.fuelgauge.PowerModeSettings",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP/MIUI (Balanced vs Performance)."
+        }
+      ]
+    },
+    {
+      "id": "performance_mode_qualcomm",
+      "title": "Modo de desempenho Qualcomm",
+      "category": "Bateria",
+      "searchKeywords": [
+        "qualcomm",
+        "qti",
+        "performance",
+        "governor",
+        "thermal",
+        "modo desempenho"
+      ],
+      "targets": [
+        {
+          "id": "performance_mode_qti",
+          "packageName": "com.qualcomm.qti.performancemode",
+          "className": "com.qualcomm.qti.performancemode.PerformanceModeActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Vendor Qualcomm; use com cuidado (pode aquecer)."
+        }
+      ]
+    },
+    {
+      "id": "battery_history_miui",
+      "title": "Historico de bateria (MIUI)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "bateria",
+        "historico",
+        "consumo",
+        "grafico",
+        "power center"
+      ],
+      "targets": [
+        {
+          "id": "battery_history_miui",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.powercenter.BatteryHistoryActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Grafico detalhado de uso."
+        }
+      ]
+    },
+    {
+      "id": "hidden_apps_powerkeeper",
+      "title": "Apps ocultos (Powerkeeper)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "apps ocultos",
+        "hidden apps",
+        "powerkeeper",
+        "bateria",
+        "economia"
+      ],
+      "targets": [
+        {
+          "id": "hidden_apps_powerkeeper",
+          "packageName": "com.miui.powerkeeper",
+          "className": "com.miui.powerkeeper.ui.HiddenAppsConfigActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Configura apps ocultos pela economia agressiva."
+        }
+      ]
+    },
+    {
+      "id": "game_turbo",
+      "title": "Game Turbo (configuracoes)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "game turbo",
+        "jogos",
+        "performance",
+        "game center",
+        "turbo"
+      ],
+      "targets": [
+        {
+          "id": "game_turbo_settings",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.gamecenter.settings.GameSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Game Turbo."
+        }
+      ]
+    },
+    {
+      "id": "deep_clean_apps",
+      "title": "Deep Clean (apps e armazenamento)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "deep clean",
+        "limpeza",
+        "limpeza profunda",
+        "armazenamento",
+        "cleaner",
+        "cache",
+        "apps grandes"
+      ],
+      "targets": [
+        {
+          "id": "deep_clean_apps_miui",
+          "packageName": "com.miui.cleanmaster",
+          "className": "com.miui.optimizecenter.deepclean.installedapp.InstalledAppsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Clean Master (analise avancada)."
+        }
+      ]
+    },
+    {
+      "id": "speaker_cleaner",
+      "title": "Limpador de alto-falante",
+      "category": "Sistema",
+      "searchKeywords": [
+        "speaker",
+        "alto falante",
+        "limpeza",
+        "agua",
+        "poeira",
+        "sound"
+      ],
+      "targets": [
+        {
+          "id": "speaker_cleaner_miui",
+          "packageName": "com.miui.cleanmaster",
+          "className": "com.miui.cleanmaster.SpeakerCleanActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Clean Master."
+        },
+        {
+          "id": "speaker_cleaner_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$SpeakerClearActivity",
+          "priority": 50,
+          "requiresExported": true,
+          "notes": "Variacao AOSP/MIUI (se presente)."
+        }
+      ]
+    },
+    {
+      "id": "extra_dim",
+      "title": "Extra Dim (reduzir brilho)",
+      "category": "Tela",
+      "minSdkVersion": 31,
+      "searchKeywords": [
+        "extra dim",
+        "reduzir brilho",
+        "reduce bright colors",
+        "acessibilidade",
+        "brilho"
+      ],
+      "targets": [
+        {
+          "id": "extra_dim_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$ReduceBrightColorsSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP (Android 12+)."
+        }
+      ]
+    },
+    {
+      "id": "refresh_rate",
+      "title": "Taxa de atualizacao",
+      "category": "Tela",
+      "searchKeywords": [
+        "taxa de atualizacao",
+        "refresh rate",
+        "hz",
+        "90hz",
+        "120hz",
+        "display"
+      ],
+      "targets": [
+        {
+          "id": "refresh_rate_miui",
+          "packageName": "com.miui.display",
+          "className": "com.miui.display.RefreshRateActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI/HyperOS."
+        },
+        {
+          "id": "refresh_rate_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$RefreshRateSettingsActivity",
+          "priority": 80,
+          "requiresExported": true,
+          "notes": "AOSP/varia por ROM."
+        }
+      ]
+    },
+    {
+      "id": "screen_resolution",
+      "title": "Resolucao de tela",
+      "category": "Tela",
+      "searchKeywords": [
+        "resolucao",
+        "screen resolution",
+        "fhd",
+        "wqhd",
+        "display",
+        "dpi"
+      ],
+      "targets": [
+        {
+          "id": "screen_resolution_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$ScreenResolutionActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Alto risco: pode causar problemas de escala."
+        }
+      ]
+    },
+    {
+      "id": "ai_image_enhancement",
+      "title": "AI Image Enhancement",
+      "category": "Tela",
+      "searchKeywords": [
+        "ai image",
+        "ia",
+        "imagem",
+        "enhancement",
+        "galeria",
+        "foto"
+      ],
+      "targets": [
+        {
+          "id": "ai_image_enhancement_miui",
+          "packageName": "com.miui.content.extension",
+          "className": "com.miui.content.extension.AiImageEnhancementActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Pode nao existir em todas as ROMs."
+        }
+      ]
+    },
+    {
+      "id": "cit_hardware_test",
+      "title": "CIT / Testes de hardware",
+      "category": "Sistema",
+      "searchKeywords": [
+        "cit",
+        "hardware",
+        "diagnostico",
+        "teste",
+        "engenharia",
+        "sensor"
+      ],
+      "targets": [
+        {
+          "id": "cit_launcher_miui",
+          "packageName": "com.miui.cit",
+          "className": "com.miui.cit.CitLauncherActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Menu de engenharia (sensores e testes)."
+        }
+      ]
+    },
+    {
+      "id": "virtual_sim",
+      "title": "Virtual SIM / Mi Roaming",
+      "category": "Rede",
+      "searchKeywords": [
+        "virtual sim",
+        "mi roaming",
+        "roaming",
+        "esim",
+        "viagem",
+        "dados"
+      ],
+      "targets": [
+        {
+          "id": "virtual_sim_main",
+          "packageName": "com.miui.virtualsim",
+          "className": "com.miui.virtualsim.ui.MainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Pode estar desativado por regiao."
+        },
+        {
+          "id": "virtual_sim_action",
+          "action": "com.miui.virtualsim.action.CARD_ACTIVATE",
+          "priority": 80,
+          "requiresExported": false,
+          "notes": "Intent alternativo (pode falhar)."
+        }
+      ]
+    },
+    {
+      "id": "radio_info",
+      "title": "Informacoes de radio (4636)",
+      "category": "Rede",
+      "searchKeywords": [
+        "radio info",
+        "4636",
+        "banda",
+        "lte",
+        "nr only",
+        "network type"
+      ],
+      "targets": [
+        {
+          "id": "radio_info_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.RadioInfo",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Menu tecnico (pode exigir permissao)."
+        }
+      ]
+    },
+    {
+      "id": "network_assistant",
+      "title": "Assistente de rede (MIUI)",
+      "category": "Rede",
+      "searchKeywords": [
+        "network assistant",
+        "assistente de rede",
+        "dados",
+        "trafego",
+        "diagnostico"
+      ],
+      "targets": [
+        {
+          "id": "network_assistant_miui",
+          "packageName": "com.miui.securitycenter",
+          "className": "com.miui.networkassistant.ui.NetworkAssistantActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI/HyperOS."
+        }
+      ]
     }
   ]
 }
