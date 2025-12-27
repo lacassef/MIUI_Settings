@@ -5,24 +5,32 @@ import com.recodex.miuisettings.domain.repository.SettingsRepository
 import com.recodex.miuisettings.domain.util.CompatibilityRules
 import com.recodex.miuisettings.domain.util.TextNormalizer
 import com.recodex.miuisettings.domain.util.maxTargetPriority
+import com.recodex.miuisettings.di.IoDispatcher
+import com.recodex.miuisettings.infra.TargetAvailabilityChecker
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
 class GetAvailableSettingsUseCase @Inject constructor(
     private val settingsRepository: SettingsRepository,
-    private val getDeviceProfileUseCase: GetDeviceProfileUseCase
+    private val getDeviceProfileUseCase: GetDeviceProfileUseCase,
+    private val availabilityChecker: TargetAvailabilityChecker,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    suspend operator fun invoke(categoryFilter: String? = null): List<HiddenSetting> {
+    suspend operator fun invoke(categoryFilter: String? = null): List<HiddenSetting> = withContext(ioDispatcher) {
         settingsRepository.ensureSeeded()
         val profile = getDeviceProfileUseCase()
         val normalizedCategory = categoryFilter?.let { TextNormalizer.normalize(it) }
-        return settingsRepository.getSettings()
+        settingsRepository.getSettings()
+            .asSequence()
             .filter { CompatibilityRules.isSettingCompatible(it, profile) }
             .map { setting ->
-                setting.copy(
-                    targets = setting.targets
-                        .filter { CompatibilityRules.isTargetCompatible(it, profile) }
-                        .sortedByDescending { it.priority }
-                )
+                val launchableTargets = setting.targets
+                    .filter { CompatibilityRules.isTargetCompatible(it, profile) }
+                    .filter { availabilityChecker.isLaunchable(it) }
+                    .sortedByDescending { it.priority }
+
+                setting.copy(targets = launchableTargets)
             }
             .filter { it.targets.isNotEmpty() }
             .filter { setting ->
@@ -36,5 +44,6 @@ class GetAvailableSettingsUseCase @Inject constructor(
                 compareByDescending<HiddenSetting> { it.maxTargetPriority() }
                     .thenBy { it.title }
             )
+            .toList()
     }
 }

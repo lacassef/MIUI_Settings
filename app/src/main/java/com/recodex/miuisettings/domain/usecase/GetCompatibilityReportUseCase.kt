@@ -4,16 +4,22 @@ import com.recodex.miuisettings.domain.model.CompatibilityReport
 import com.recodex.miuisettings.domain.model.CompatibilityStatus
 import com.recodex.miuisettings.domain.repository.SettingsRepository
 import com.recodex.miuisettings.domain.util.CompatibilityRules
+import com.recodex.miuisettings.di.IoDispatcher
+import com.recodex.miuisettings.infra.TargetAvailabilityChecker
 import com.recodex.miuisettings.infra.TelemetryLogger
 import javax.inject.Inject
 import java.util.Locale
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
 class GetCompatibilityReportUseCase @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val getDeviceProfileUseCase: GetDeviceProfileUseCase,
-    private val telemetryLogger: TelemetryLogger
+    private val telemetryLogger: TelemetryLogger,
+    private val availabilityChecker: TargetAvailabilityChecker,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    suspend operator fun invoke(): CompatibilityReport {
+    suspend operator fun invoke(): CompatibilityReport = withContext(ioDispatcher) {
         settingsRepository.ensureSeeded()
         val profile = getDeviceProfileUseCase()
         val settings = settingsRepository.getSettings()
@@ -26,12 +32,16 @@ class GetCompatibilityReportUseCase @Inject constructor(
 
         settings.forEach { setting ->
             val baseStatus = CompatibilityRules.getSettingStatus(setting, profile)
-            var compatibleTargetsForSetting = 0
+            val shouldCheckAvailability = baseStatus == CompatibilityStatus.COMPATIBLE
+            var launchableTargetsForSetting = 0
 
             setting.targets.forEach { target ->
                 val targetStatus = CompatibilityRules.getTargetStatus(target, profile)
                 if (targetStatus == CompatibilityStatus.COMPATIBLE) {
-                    compatibleTargetsForSetting += 1
+                    compatibleTargets += 1
+                    if (shouldCheckAvailability && availabilityChecker.isLaunchable(target)) {
+                        launchableTargetsForSetting += 1
+                    }
                 } else {
                     incrementCount(targetStatusCounts, targetStatus)
                 }
@@ -39,14 +49,13 @@ class GetCompatibilityReportUseCase @Inject constructor(
 
             if (baseStatus != CompatibilityStatus.COMPATIBLE) {
                 incrementCount(settingStatusCounts, baseStatus)
-            } else if (compatibleTargetsForSetting == 0) {
+            } else if (launchableTargetsForSetting == 0) {
                 incrementCount(settingStatusCounts, CompatibilityStatus.NO_COMPATIBLE_TARGETS)
             } else {
                 compatibleSettings += 1
             }
 
             totalTargets += setting.targets.size
-            compatibleTargets += compatibleTargetsForSetting
         }
 
         val report = CompatibilityReport(
@@ -62,7 +71,7 @@ class GetCompatibilityReportUseCase @Inject constructor(
             "compatibility_report",
             buildTelemetryAttributes(profile.manufacturer, profile.miuiVersion, profile.isHyperOs, report)
         )
-        return report
+        report
     }
 
     private fun incrementCount(counts: MutableMap<CompatibilityStatus, Int>, status: CompatibilityStatus) {

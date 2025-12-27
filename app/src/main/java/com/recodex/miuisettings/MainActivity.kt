@@ -27,6 +27,12 @@ import com.recodex.miuisettings.presentation.model.SettingSummary
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+
+import com.google.android.material.textfield.TextInputEditText
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvDeviceModel: TextView
     private lateinit var tvDeviceDetails: TextView
     private lateinit var tvCompatibility: TextView
-    private lateinit var etSearch: EditText
+    private lateinit var etSearch: TextInputEditText
     private lateinit var disclaimerCard: MaterialCardView
     private lateinit var emptyStateLayout: View
     
@@ -46,13 +52,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Enable Edge-to-Edge
+        // Note: For full edge-to-edge, ensure themes.xml has transparent status/nav bars
+        // WindowCompat.setDecorFitsSystemWindows(window, false) is deprecated in favor of enableEdgeToEdge() 
+        // if using androidx.activity 1.8.0+, but we can just use the ViewCompat approach for compatibility.
+        
         setContentView(R.layout.activity_main)
 
         setupViews()
         setupDisclaimer()
         setupObservers()
+        setupWindowInsets()
         
         listViewModel.load()
+    }
+
+    private fun setupWindowInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.appBarLayout)) { v, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.updatePadding(top = bars.top)
+            insets
+        }
+        
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recycler_view_settings)) { v, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.updatePadding(bottom = bars.bottom + 16) // Add extra padding for better UX
+            insets
+        }
     }
 
     private fun setupViews() {
@@ -73,7 +99,8 @@ class MainActivity : AppCompatActivity() {
         emptyStateLayout = findViewById(R.id.layout_empty_state)
         
         val chipGroup = findViewById<ChipGroup>(R.id.chip_group_categories)
-        chipGroup.setOnCheckedChangeListener { _, checkedId ->
+        chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+            val checkedId = checkedIds.firstOrNull() ?: View.NO_ID
             val category = when (checkedId) {
                 R.id.chip_network -> SettingCategories.NETWORK
                 R.id.chip_display -> SettingCategories.DISPLAY
@@ -82,11 +109,11 @@ class MainActivity : AppCompatActivity() {
                 else -> null
             }
             listViewModel.load(category)
-            etSearch.text.clear()
+            etSearch.text?.clear()
         }
         
         etSearch.addTextChangedListener { text ->
-             filterList(text.toString())
+             filterList(text?.toString() ?: "")
         }
     }
 
@@ -121,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         
                         allSettings = state.settings
-                        filterList(etSearch.text.toString())
+                        filterList(etSearch.text?.toString() ?: "")
                         
                         state.errorMessage?.let {
                             Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()

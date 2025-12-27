@@ -5,25 +5,89 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
+        <package android:name="com.android.angle" />
+        <package android:name="com.android.devicediagnostics" />
+        <package android:name="com.android.egg" />
+        <package android:name="com.android.phone" />
         <package android:name="com.android.settings" />
-        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.android.soundpicker" />
+        <package android:name="com.android.storagemanager" />
+        <package android:name="com.android.systemui" />
+        <package android:name="com.android.traceur" />
+        <package android:name="com.miui.cit" />
+        <package android:name="com.miui.cleanmaster" />
+        <package android:name="com.miui.content.extension" />
+        <package android:name="com.miui.display" />
         <package android:name="com.miui.powercenter" />
         <package android:name="com.miui.powerkeeper" />
-        <package android:name="com.android.phone" />
+        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.miui.settings" />
+        <package android:name="com.miui.virtualsim" />
+        <package android:name="com.xiaomi.cameratools" />
+        <package android:name="com.xiaomi.mbnloader" />
+        <package android:name="com.xiaomi.mtb" />
         <intent>
-            <action android:name="android.settings.SETTINGS" />
+            <action android:name="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS" />
         </intent>
         <intent>
             <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />
         </intent>
         <intent>
-            <action android:name="android.settings.WIFI_SETTINGS" />
+            <action android:name="android.settings.APPLICATION_DEVELOPMENT_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.APPLICATION_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.BLUETOOTH_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.DATE_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.DISPLAY_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.MANAGE_APPLICATIONS_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.MANAGE_UNKNOWN_APP_SOURCES" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.NFC_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.NIGHT_DISPLAY_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.NOTIFICATION_POLICY_ACCESS_SETTINGS" />
         </intent>
         <intent>
             <action android:name="android.settings.PRIVATE_DNS_SETTINGS" />
         </intent>
         <intent>
-            <action android:name="android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS" />
+            <action android:name="android.settings.SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.SOUND_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.WIFI_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.WIRELESS_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.action.MANAGE_OVERLAY_PERMISSION" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.action.MANAGE_WRITE_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="com.miui.virtualsim.action.CARD_ACTIVATE" />
         </intent>
     </queries>
 

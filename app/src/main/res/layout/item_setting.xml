@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
+    android:layout_marginBottom="8dp"
+    style="@style/Widget.Material3.CardView.Filled"
     android:clickable="true"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,12 +16,13 @@
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_system"
+            android:padding="8dp"
+            app:tint="?attr/colorPrimary"
             android:background="@drawable/bg_icon_circle"
-            android:padding="6dp"
-            app:tint="@color/purple_500"
+            app:backgroundTint="?attr/colorSecondaryContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,13 +33,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Notification Log"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="?attr/colorOnSurface"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@+id/iv_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/chip_legacy"
-            app:layout_constraintBottom_toTopOf="@+id/tv_category"/>
+            app:layout_constraintBottom_toTopOf="@+id/tv_category"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <TextView
             android:id="@+id/chip_legacy"
@@ -48,8 +48,9 @@
             android:layout_height="wrap_content"
             android:text="Legacy"
             android:textSize="10sp"
-            android:textColor="#FF9800"
+            android:textColor="?attr/colorOnTertiaryContainer"
             android:background="@drawable/bg_badge_legacy"
+            android:backgroundTint="?attr/colorTertiaryContainer"
             android:paddingHorizontal="6dp"
             android:paddingVertical="2dp"
             android:visibility="gone"
@@ -62,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="System"
-            android:textSize="12sp"
-            android:textColor="?android:attr/textColorSecondary"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_marginTop="2dp"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@+id/iv_icon"
@@ -74,7 +75,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_chevron_right"
-            app:tint="?android:attr/textColorSecondary"
+            app:tint="?attr/colorOnSurfaceVariant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.MIUISettings">
+        android:background="?attr/colorSurface"
+        app:liftOnScroll="true">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.MIUISettings"
-            app:title="@string/app_name" />
+            app:title="@string/app_name"
+            app:titleCentered="true"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            android:background="@android:color/transparent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,11 +36,12 @@
             android:id="@+id/card_disclaimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:visibility="gone"
-            app:cardBackgroundColor="#FFF3E0"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
+            style="@style/Widget.Material3.CardView.Filled"
+            app:cardBackgroundColor="?attr/colorErrorContainer"
             tools:visibility="visible">
 
             <LinearLayout
@@ -49,16 +54,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aviso Importante"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="#E65100"/>
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textColor="?attr/colorOnErrorContainer"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Este é um aplicativo de terceiros e não é afiliado à Xiaomi. A disponibilidade das configurações depende da sua versão da ROM (MIUI/HyperOS) e do Android."
-                    android:textColor="#BF360C"/>
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?attr/colorOnErrorContainer"/>
 
                 <Button
                     android:id="@+id/btn_disclaimer_ok"
@@ -66,8 +71,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="8dp"
-                    android:text="Entendi, continuar"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    android:text="Entendi"
+                    android:textColor="?attr/colorOnErrorContainer"
+                    style="@style/Widget.Material3.Button.TextButton"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -76,10 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="2dp">
+            android:layout_marginVertical="8dp"
+            style="@style/Widget.Material3.CardView.Elevated">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,9 +95,9 @@
                     android:id="@+id/tv_device_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Carregando dispositivo..."
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:text="Carregando..."
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+                    android:textColor="?attr/colorOnSurface"/>
 
                 <TextView
                     android:id="@+id/tv_device_details"
@@ -101,17 +105,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="SDK: -- | MIUI: --"
-                    android:textSize="14sp"
-                    android:textColor="?android:attr/textColorSecondary"/>
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant"/>
                 
                  <TextView
                     android:id="@+id/tv_compatibility_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:text="Verificando compatibilidade..."
-                    android:textSize="12sp"
-                    android:textColor="?android:attr/textColorSecondary"/>
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textColor="?attr/colorPrimary"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -121,66 +125,73 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
             
-            <EditText
-                android:id="@+id/et_search"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Buscar configuração..."
-                android:drawableStart="@android:drawable/ic_menu_search"
-                android:drawablePadding="8dp"
-                android:padding="12dp"
-                android:background="@drawable/bg_search_input"
-                android:layout_marginBottom="8dp"/>
+                android:hint="Buscar configuração"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@android:drawable/ic_menu_search"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:singleSelection="true">
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
                     
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Todas"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        style="@style/Widget.Material3.Chip.Filter"
                         android:checked="true"/>
                         
-                     <!-- Categories will be added dynamically or hardcoded for prototype -->
                      <com.google.android.material.chip.Chip
                         android:id="@+id/chip_network"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rede"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                        style="@style/Widget.Material3.Chip.Filter"/>
                         
                      <com.google.android.material.chip.Chip
                         android:id="@+id/chip_display"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tela"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                        style="@style/Widget.Material3.Chip.Filter"/>
 
                      <com.google.android.material.chip.Chip
                         android:id="@+id/chip_battery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bateria"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                        style="@style/Widget.Material3.Chip.Filter"/>
                         
                       <com.google.android.material.chip.Chip
                         android:id="@+id/chip_security"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Segurança"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"/>
+                        style="@style/Widget.Material3.Chip.Filter"/>
 
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
@@ -207,15 +218,15 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_empty_state"
-                app:tint="#BDBDBD"/>
+                app:tint="?attr/colorOutline"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nenhum resultado encontrado"
                 android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:textColor="?android:attr/textColorSecondary"/>
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -224,7 +235,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:clipToPadding="false"
-            android:padding="8dp"/>
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"/>
 
     </LinearLayout>
 
