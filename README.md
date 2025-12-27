@@ -28,6 +28,7 @@ Campos principais:
 - `version`: string de versao.
 - `settings[]`: lista de configuracoes.
 - `settings[].targets[]`: destinos com `packageName` + `className` ou apenas `action`.
+- `settings[].targets[].extras`: (opcional) objeto com extras para o Intent (valores em string).
 - `minSdkVersion`, `maxSdkVersion`, `requiredMiuiVersion`, `isLegacyOnly` controlam compatibilidade.
 - `signature`: opcional; pode ser exigida via `REMOTE_CATALOG_SIGNATURE_REQUIRED` e `REMOTE_CATALOG_SIGNATURE_SALT`.
 

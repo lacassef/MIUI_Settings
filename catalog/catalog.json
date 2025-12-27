@@ -21,6 +21,14 @@
           "priority": 100,
           "requiresExported": true,
           "notes": "AOSP (pode variar por ROM)"
+        },
+        {
+          "id": "notification_log_miui",
+          "packageName": "com.miui.settings",
+          "className": "com.miui.settings.NotificationLogActivity",
+          "priority": 110,
+          "requiresExported": true,
+          "notes": "MIUI (pode variar por ROM)"
         }
       ]
     },
@@ -64,6 +72,14 @@
         "rede"
       ],
       "targets": [
+        {
+          "id": "private_dns_class",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.network.PrivateDnsSettingsActivity",
+          "priority": 110,
+          "requiresExported": true,
+          "notes": "AOSP (classe direta)."
+        },
         {
           "id": "private_dns_action",
           "action": "android.settings.PRIVATE_DNS_SETTINGS",
@@ -360,6 +376,22 @@
       ],
       "targets": [
         {
+          "id": "manage_apps_legacy",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.ManageApplications",
+          "priority": 110,
+          "requiresExported": true,
+          "notes": "AOSP (legado)."
+        },
+        {
+          "id": "manage_apps_modern",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.applications.ManageApplications",
+          "priority": 105,
+          "requiresExported": true,
+          "notes": "AOSP (moderno)."
+        },
+        {
           "id": "application_settings_action",
           "action": "android.settings.APPLICATION_SETTINGS",
           "priority": 100,
@@ -528,29 +560,6 @@
           "priority": 100,
           "requiresExported": true,
           "notes": "AOSP/MIUI (Balanced vs Performance)."
-        }
-      ]
-    },
-    {
-      "id": "performance_mode_qualcomm",
-      "title": "Modo de desempenho Qualcomm",
-      "category": "Bateria",
-      "searchKeywords": [
-        "qualcomm",
-        "qti",
-        "performance",
-        "governor",
-        "thermal",
-        "modo desempenho"
-      ],
-      "targets": [
-        {
-          "id": "performance_mode_qti",
-          "packageName": "com.qualcomm.qti.performancemode",
-          "className": "com.qualcomm.qti.performancemode.PerformanceModeActivity",
-          "priority": 100,
-          "requiresExported": true,
-          "notes": "Vendor Qualcomm; use com cuidado (pode aquecer)."
         }
       ]
     },
@@ -795,6 +804,14 @@
           "priority": 100,
           "requiresExported": true,
           "notes": "Menu de engenharia (sensores e testes)."
+        },
+        {
+          "id": "cit_home_miui",
+          "packageName": "com.miui.cit",
+          "className": "com.miui.cit.home.HomeActivity",
+          "priority": 90,
+          "requiresExported": true,
+          "notes": "Variacao MIUI."
         }
       ]
     },
@@ -848,6 +865,14 @@
           "priority": 100,
           "requiresExported": true,
           "notes": "Menu tecnico (pode exigir permissao)."
+        },
+        {
+          "id": "radio_info_phone",
+          "packageName": "com.android.phone",
+          "className": "com.android.phone.settings.RadioInfo",
+          "priority": 90,
+          "requiresExported": true,
+          "notes": "Menu tecnico (AOSP/Phone)."
         }
       ]
     },
@@ -870,6 +895,752 @@
           "priority": 100,
           "requiresExported": true,
           "notes": "MIUI/HyperOS."
+        }
+      ]
+    },
+    {
+      "id": "notification_history",
+      "title": "Historico de notificacoes",
+      "category": "Sistema",
+      "minSdkVersion": 30,
+      "searchKeywords": [
+        "historico de notificacoes",
+        "notification history",
+        "notificacoes",
+        "history",
+        "registro"
+      ],
+      "targets": [
+        {
+          "id": "notification_history_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.notification.history.NotificationHistoryActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP (Android 11+)."
+        }
+      ]
+    },
+    {
+      "id": "color_and_motion",
+      "title": "Cor e movimento",
+      "category": "Tela",
+      "searchKeywords": [
+        "cor",
+        "color",
+        "movimento",
+        "motion",
+        "enhancement"
+      ],
+      "targets": [
+        {
+          "id": "color_and_motion_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$ColorAndMotionActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "contrast_dialog",
+      "title": "Contraste (SystemUI)",
+      "category": "Tela",
+      "searchKeywords": [
+        "contraste",
+        "contrast",
+        "acessibilidade"
+      ],
+      "targets": [
+        {
+          "id": "contrast_dialog_systemui",
+          "packageName": "com.android.systemui",
+          "className": "com.android.systemui.contrast.ContrastDialogActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "SystemUI."
+        }
+      ]
+    },
+    {
+      "id": "android_easter_egg",
+      "title": "Easter egg do Android",
+      "category": "Outros",
+      "searchKeywords": [
+        "easter egg",
+        "android",
+        "animacao",
+        "ovo de pascoa"
+      ],
+      "targets": [
+        {
+          "id": "android_easter_egg_main",
+          "packageName": "com.android.egg",
+          "className": "com.android.egg.landroid.MainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "mobile_networks",
+      "title": "Redes moveis",
+      "category": "Rede",
+      "searchKeywords": [
+        "rede movel",
+        "mobile networks",
+        "dados moveis",
+        "lte",
+        "5g"
+      ],
+      "targets": [
+        {
+          "id": "mobile_networks_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$MobileNetworkListActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "settings_advanced_search",
+      "title": "Busca avancada de configuracoes",
+      "category": "Sistema",
+      "searchKeywords": [
+        "busca",
+        "search",
+        "configuracoes",
+        "settings intelligence"
+      ],
+      "targets": [
+        {
+          "id": "settings_search_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.intelligence.search.SearchActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Settings Intelligence."
+        }
+      ]
+    },
+    {
+      "id": "power_tools_miui",
+      "title": "Power Tools (MIUI)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "power tools",
+        "monitor",
+        "energia",
+        "performance",
+        "powerkeeper"
+      ],
+      "targets": [
+        {
+          "id": "power_tools_activity",
+          "packageName": "com.miui.powerkeeper",
+          "className": "com.miui.powerkeeper.ui.powertools.PowerToolsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Power Tools."
+        }
+      ]
+    },
+    {
+      "id": "battery_performance_tools",
+      "title": "Bateria e performance (MIUI)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "bateria",
+        "performance",
+        "framerate",
+        "powerkeeper",
+        "fps"
+      ],
+      "targets": [
+        {
+          "id": "power_tools_config",
+          "packageName": "com.miui.powerkeeper",
+          "className": "com.miui.powerkeeper.ui.framerate.PowerToolsConfigActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Power Tools (framerate)."
+        }
+      ]
+    },
+    {
+      "id": "auto_task_manager",
+      "title": "Auto Task Manager (MIUI)",
+      "category": "Bateria",
+      "searchKeywords": [
+        "autotask",
+        "task manager",
+        "miui",
+        "powercenter"
+      ],
+      "targets": [
+        {
+          "id": "auto_task_manage",
+          "packageName": "com.miui.powercenter",
+          "className": "com.miui.powercenter.autotask.AutoTaskManageActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Auto Task."
+        }
+      ]
+    },
+    {
+      "id": "modem_test_tools",
+      "title": "Teste de modem (Xiaomi)",
+      "category": "Rede",
+      "searchKeywords": [
+        "modem",
+        "teste",
+        "mtb",
+        "xiaomi",
+        "diagnostico"
+      ],
+      "targets": [
+        {
+          "id": "modem_test_box",
+          "packageName": "com.xiaomi.mtb",
+          "className": "com.xiaomi.mtb.activity.ModemTestBoxMainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Xiaomi Modem Test Box."
+        }
+      ]
+    },
+    {
+      "id": "band_mode",
+      "title": "Modo de bandas (radio)",
+      "category": "Rede",
+      "searchKeywords": [
+        "banda",
+        "band mode",
+        "lte",
+        "nr",
+        "gsm",
+        "wcdma"
+      ],
+      "targets": [
+        {
+          "id": "band_mode_miui",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.MiuiBandMode",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI."
+        },
+        {
+          "id": "band_mode_phone",
+          "packageName": "com.android.phone",
+          "className": "com.android.phone.settings.BandMode",
+          "priority": 90,
+          "requiresExported": true,
+          "notes": "AOSP/Phone."
+        }
+      ]
+    },
+    {
+      "id": "camera_calibration",
+      "title": "Calibracao de camera (Xiaomi)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "camera",
+        "calibracao",
+        "teste",
+        "cameratools"
+      ],
+      "targets": [
+        {
+          "id": "camera_calibration_xiaomi",
+          "packageName": "com.xiaomi.cameratools",
+          "className": "com.xiaomi.cameratools.calibration.CalibrationCheckActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Xiaomi Camera Tools."
+        }
+      ]
+    },
+    {
+      "id": "app_usage",
+      "title": "Uso de aplicativos",
+      "category": "Sistema",
+      "searchKeywords": [
+        "uso de apps",
+        "tempo de uso",
+        "usage stats",
+        "tempo de tela"
+      ],
+      "targets": [
+        {
+          "id": "usage_stats_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.UsageStatsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP (tempo de uso)."
+        },
+        {
+          "id": "app_battery_usage_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$AppBatteryUsageActivity",
+          "priority": 80,
+          "requiresExported": true,
+          "notes": "AOSP (uso de bateria por app)."
+        }
+      ]
+    },
+    {
+      "id": "storage_removal",
+      "title": "Remover itens (Storage Manager)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "remover itens",
+        "limpeza",
+        "storage",
+        "deletion",
+        "limpar"
+      ],
+      "targets": [
+        {
+          "id": "storage_deletion_helper",
+          "packageName": "com.android.storagemanager",
+          "className": "com.android.storagemanager.deletionhelper.DeletionHelperActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Storage Manager."
+        }
+      ]
+    },
+    {
+      "id": "sound_picker",
+      "title": "Seletor de sons",
+      "category": "Sistema",
+      "searchKeywords": [
+        "sound picker",
+        "sons",
+        "toques",
+        "ringtone"
+      ],
+      "targets": [
+        {
+          "id": "sound_picker_aosp",
+          "packageName": "com.android.soundpicker",
+          "className": "com.android.soundpicker.RingtonePickerActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Sound Picker."
+        }
+      ]
+    },
+    {
+      "id": "android_paint",
+      "title": "Android Paint",
+      "category": "Outros",
+      "searchKeywords": [
+        "paint",
+        "desenho",
+        "easter egg"
+      ],
+      "targets": [
+        {
+          "id": "android_paint_activity",
+          "packageName": "com.android.egg",
+          "className": "com.android.egg.paint.PaintActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "dessert_case",
+      "title": "Dessert Case",
+      "category": "Outros",
+      "searchKeywords": [
+        "dessert case",
+        "easter egg",
+        "animacao"
+      ],
+      "targets": [
+        {
+          "id": "dessert_case_systemui",
+          "packageName": "com.android.systemui",
+          "className": "com.android.systemui.DessertCase",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "SystemUI."
+        }
+      ]
+    },
+    {
+      "id": "marshmallow_land",
+      "title": "Marshmallow Land",
+      "category": "Outros",
+      "searchKeywords": [
+        "marshmallow land",
+        "easter egg"
+      ],
+      "targets": [
+        {
+          "id": "marshmallow_land_systemui",
+          "packageName": "com.android.systemui",
+          "className": "com.android.systemui.egg.MLandActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "SystemUI."
+        }
+      ]
+    },
+    {
+      "id": "testing_settings",
+      "title": "Testes do dispositivo (4636)",
+      "category": "Sistema",
+      "searchKeywords": [
+        "testing",
+        "4636",
+        "teste",
+        "diagnostico"
+      ],
+      "targets": [
+        {
+          "id": "testing_settings_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$TestingSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP (Testing Settings)."
+        }
+      ]
+    },
+    {
+      "id": "battery_saver_mode",
+      "title": "Modo economia de bateria",
+      "category": "Bateria",
+      "searchKeywords": [
+        "economia de bateria",
+        "battery saver",
+        "power mode",
+        "economia"
+      ],
+      "targets": [
+        {
+          "id": "battery_saver_miui",
+          "packageName": "com.miui.powerkeeper",
+          "className": "com.miui.powerkeeper.ui.battery.BatterySaverActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "MIUI Battery Saver."
+        },
+        {
+          "id": "battery_saver_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.fuelgauge.PowerModeSettings",
+          "priority": 80,
+          "requiresExported": true,
+          "notes": "AOSP (PowerModeSettings)."
+        }
+      ]
+    },
+    {
+      "id": "modem_config_mbn",
+      "title": "Configuracao de modem (MBN)",
+      "category": "Rede",
+      "searchKeywords": [
+        "mbn",
+        "modem",
+        "configuracao",
+        "xiaomi"
+      ],
+      "targets": [
+        {
+          "id": "mbn_loader",
+          "packageName": "com.xiaomi.mbnloader",
+          "className": "com.xiaomi.mbnloader.MBNLoaderActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "Xiaomi MBN Loader."
+        }
+      ]
+    },
+    {
+      "id": "wifi_test",
+      "title": "Teste de Wi-Fi",
+      "category": "Rede",
+      "searchKeywords": [
+        "wifi test",
+        "diagnostico",
+        "wifi info"
+      ],
+      "targets": [
+        {
+          "id": "wifi_info_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$WifiInfoActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Wi-Fi info."
+        }
+      ]
+    },
+    {
+      "id": "connection_preferences",
+      "title": "Preferencias de conexao",
+      "category": "Rede",
+      "searchKeywords": [
+        "conexao",
+        "connected devices",
+        "preferencias",
+        "bluetooth",
+        "cast",
+        "impressao"
+      ],
+      "targets": [
+        {
+          "id": "connected_devices_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$AdvancedConnectedDeviceActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP connected devices."
+        },
+        {
+          "id": "network_dashboard_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$NetworkDashboardActivity",
+          "priority": 90,
+          "requiresExported": true,
+          "notes": "AOSP network dashboard."
+        }
+      ]
+    },
+    {
+      "id": "adaptive_brightness",
+      "title": "Brilho adaptativo",
+      "category": "Tela",
+      "searchKeywords": [
+        "brilho adaptativo",
+        "adaptive brightness",
+        "auto brilho"
+      ],
+      "targets": [
+        {
+          "id": "adaptive_brightness_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$AdaptiveBrightnessActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "intelligent_wifi",
+      "title": "Wi-Fi inteligente",
+      "category": "Rede",
+      "searchKeywords": [
+        "wifi inteligente",
+        "intelligent wifi",
+        "troca automatica"
+      ],
+      "targets": [
+        {
+          "id": "intelligent_wifi_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$IntelligentWifiSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP/MIUI."
+        }
+      ]
+    },
+    {
+      "id": "device_diagnostics",
+      "title": "Diagnosticos do dispositivo",
+      "category": "Sistema",
+      "searchKeywords": [
+        "diagnostico",
+        "device diagnostics",
+        "teste"
+      ],
+      "targets": [
+        {
+          "id": "device_diagnostics_aosp",
+          "packageName": "com.android.devicediagnostics",
+          "className": "com.android.devicediagnostics.MainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP diagnostics."
+        }
+      ]
+    },
+    {
+      "id": "angle",
+      "title": "ANGLE",
+      "category": "Desenvolvedor",
+      "searchKeywords": [
+        "angle",
+        "opengl",
+        "debug"
+      ],
+      "targets": [
+        {
+          "id": "angle_main",
+          "packageName": "com.android.angle",
+          "className": "com.android.angle.MainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "ANGLE."
+        }
+      ]
+    },
+    {
+      "id": "traceur",
+      "title": "Traceur",
+      "category": "Desenvolvedor",
+      "searchKeywords": [
+        "traceur",
+        "tracing",
+        "debug",
+        "performance"
+      ],
+      "targets": [
+        {
+          "id": "traceur_main",
+          "packageName": "com.android.traceur",
+          "className": "com.android.traceur.MainActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Traceur."
+        }
+      ]
+    },
+    {
+      "id": "wifi_ap_itest",
+      "title": "Teste de Wi-Fi AP",
+      "category": "Rede",
+      "searchKeywords": [
+        "wifi ap",
+        "itest",
+        "hotspot",
+        "teste"
+      ],
+      "targets": [
+        {
+          "id": "wifi_ap_itest_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$WifiAPITestActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP Wi-Fi AP test."
+        }
+      ]
+    },
+    {
+      "id": "demo_mode",
+      "title": "Demo Mode (SystemUI)",
+      "category": "Desenvolvedor",
+      "searchKeywords": [
+        "demo mode",
+        "systemui",
+        "status bar"
+      ],
+      "targets": [
+        {
+          "id": "demo_mode_systemui",
+          "packageName": "com.android.systemui",
+          "className": "com.android.systemui.DemoMode",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "SystemUI demo mode."
+        }
+      ]
+    },
+    {
+      "id": "color_contrast",
+      "title": "Contraste de cores",
+      "category": "Tela",
+      "searchKeywords": [
+        "contraste de cores",
+        "color contrast",
+        "acessibilidade"
+      ],
+      "targets": [
+        {
+          "id": "color_contrast_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$ColorContrastActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "display_size_text",
+      "title": "Tamanho de exibicao e texto",
+      "category": "Tela",
+      "searchKeywords": [
+        "tamanho de exibicao",
+        "texto",
+        "display size",
+        "fonte"
+      ],
+      "targets": [
+        {
+          "id": "text_reading_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$TextReadingSettingsActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "long_background_tasks",
+      "title": "Tarefas longas em segundo plano",
+      "category": "Bateria",
+      "searchKeywords": [
+        "long background tasks",
+        "background",
+        "tarefas",
+        "apps"
+      ],
+      "targets": [
+        {
+          "id": "long_background_tasks_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$LongBackgroundTasksActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
+        }
+      ]
+    },
+    {
+      "id": "router_history",
+      "title": "Historico de roteadores",
+      "category": "Rede",
+      "searchKeywords": [
+        "router history",
+        "historico",
+        "wifi",
+        "roteador"
+      ],
+      "targets": [
+        {
+          "id": "router_history_aosp",
+          "packageName": "com.android.settings",
+          "className": "com.android.settings.Settings$RouterHistoryActivity",
+          "priority": 100,
+          "requiresExported": true,
+          "notes": "AOSP."
         }
       ]
     }

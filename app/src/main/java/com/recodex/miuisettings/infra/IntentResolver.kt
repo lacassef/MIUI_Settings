@@ -86,7 +86,7 @@ class IntentResolver @Inject constructor(
     }
 
     private fun buildIntent(target: SettingTarget): Intent? {
-        return when {
+        val intent = when {
             !target.className.isNullOrBlank() -> {
                 Intent().setClassName(target.packageName, target.className)
             }
@@ -95,6 +95,14 @@ class IntentResolver @Inject constructor(
             }
             else -> null
         }
+        if (intent != null && target.extras.isNotEmpty()) {
+            target.extras.forEach { (key, value) ->
+                if (key.isNotBlank()) {
+                    intent.putExtra(key, value)
+                }
+            }
+        }
+        return intent
     }
 
     private fun resolveActivity(packageManager: PackageManager, intent: Intent) =

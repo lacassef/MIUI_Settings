@@ -52,6 +52,9 @@ object CatalogValidator {
                 if (target.action == null && target.className == null) {
                     errors.add("settings[$index].targets[$targetIndex].intent_missing")
                 }
+                if (target.extras.keys.any { it.isBlank() }) {
+                    errors.add("settings[$index].targets[$targetIndex].extras_key_blank")
+                }
                 if (target.minSdkVersion != null && target.maxSdkVersion != null
                     && target.minSdkVersion > target.maxSdkVersion
                 ) {

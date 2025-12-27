@@ -110,6 +110,7 @@ class JsonRemoteCatalogDataSource @Inject constructor(
             val packageName = targetObj.optString("packageName", "")
             val className = targetObj.optString("className").takeIf { it.isNotBlank() }
             val action = targetObj.optString("action").takeIf { it.isNotBlank() }
+            val extras = parseExtras(targetObj.opt("extras"))
             if (className == null && action == null) continue
             if (className != null && packageName.isBlank()) continue
             targets.add(
@@ -119,6 +120,7 @@ class JsonRemoteCatalogDataSource @Inject constructor(
                     packageName = packageName,
                     className = className,
                     action = action,
+                    extras = extras,
                     priority = targetObj.optInt("priority", 0),
                     minSdkVersion = targetObj.optInt("minSdkVersion").takeIf { it > 0 },
                     maxSdkVersion = targetObj.optInt("maxSdkVersion").takeIf { it > 0 },
@@ -129,6 +131,21 @@ class JsonRemoteCatalogDataSource @Inject constructor(
             )
         }
         return targets
+    }
+
+    private fun parseExtras(raw: Any?): Map<String, String> {
+        val obj = raw as? JSONObject ?: return emptyMap()
+        val extras = mutableMapOf<String, String>()
+        val keys = obj.keys()
+        while (keys.hasNext()) {
+            val key = keys.next()
+            if (key.isBlank()) continue
+            val value = obj.opt(key)
+            if (value != null) {
+                extras[key] = value.toString()
+            }
+        }
+        return extras
     }
 
     private fun validateCatalog(parsed: ParsedCatalog) {

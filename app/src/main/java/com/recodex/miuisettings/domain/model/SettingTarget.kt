@@ -6,6 +6,7 @@ data class SettingTarget(
     val packageName: String,
     val className: String? = null,
     val action: String? = null,
+    val extras: Map<String, String> = emptyMap(),
     val priority: Int = 0,
     val minSdkVersion: Int? = null,
     val maxSdkVersion: Int? = null,

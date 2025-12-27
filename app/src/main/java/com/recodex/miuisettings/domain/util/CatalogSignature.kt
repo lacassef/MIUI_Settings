@@ -41,9 +41,21 @@ object CatalogSignature {
                     builder.append(";requiredMiui=").append(target.requiredMiuiVersion ?: "")
                     builder.append(";exported=").append(target.requiresExported)
                     builder.append(";notes=").append(target.notes ?: "")
+                    if (target.extras.isNotEmpty()) {
+                        val extras = target.extras.toSortedMap().entries.joinToString(",") { entry ->
+                            "${escape(entry.key)}=${escape(entry.value)}"
+                        }
+                        builder.append(";extras=").append(extras)
+                    }
                 }
         }
         return builder.toString()
+    }
+
+    private fun escape(value: String): String {
+        return value.replace("\\", "\\\\")
+            .replace(",", "\\,")
+            .replace("=", "\\=")
     }
 
     private fun sha256(input: String): String {

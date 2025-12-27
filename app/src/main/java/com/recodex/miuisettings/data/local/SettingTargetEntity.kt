@@ -23,6 +23,7 @@ data class SettingTargetEntity(
     val packageName: String,
     val className: String?,
     val action: String?,
+    val extrasJson: String?,
     val priority: Int,
     val minSdkVersion: Int?,
     val maxSdkVersion: Int?,
